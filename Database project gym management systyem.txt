@@ -1,0 +1,561 @@
+drop table promotional_material;
+drop table payment;
+drop table workout_plan;
+drop table workoutname;
+drop table instructor;
+drop table Members;
+drop table Membership_type;
+drop table Admin_users;
+
+create table Admin_users (
+user_id number(10)          NOT NULL,
+user_name varchar (80) ,
+user_Contact number (11),
+user_Adress varchar (20),
+user_passward number(5),
+PRIMARY KEY (user_id) 
+);
+
+
+insert into Admin_users ( user_id,User_name,user_Contact,user_Adress,user_passward) values
+(1,'Azam Khan',01723123451,'Tootpara',1231);
+insert into Admin_users  ( user_id,User_name,user_Contact,user_Adress,user_passward) values
+(2,'Raju Ahmed',01721123452,'PTI',1232);
+insert into Admin_users  ( user_id,User_name,user_Contact,user_Adress,user_passward) values
+(3,'Kashem Khan',01755228972,'Boira',1233);
+insert into Admin_users  ( user_id,User_name,user_Contact,user_Adress,user_passward) values
+(4,'Dip Saha',01755228973,'Banargati',1234);
+insert into Admin_users  ( user_id,User_name,user_Contact,user_Adress,user_passward) values
+(5,'Kumar Khanna',01755228943,'Nazirpur',1235);
+insert into Admin_users  ( user_id,User_name,user_Contact,user_Adress,user_passward) values
+(6,'Rijvi Hasan', 01985228943,'Rupsha',1236);
+insert into Admin_users  ( user_id,User_name,user_Contact,user_Adress,user_passward) values
+(7,'Jihan Karim',01615228946,'Uzirpur',1237);
+insert into Admin_users  ( user_id,User_name,user_Contact,user_Adress,user_passward) values
+(8,'Razzak Hasan',01615458946,'Kapilmuni',1238);
+insert into Admin_users  ( user_id,User_name,user_Contact,user_Adress,user_passward) values
+(9,'Nizamuddin Rahman',01995228946,'Karimnagar',1239);
+insert into Admin_users  ( user_id,User_name,user_Contact,user_Adress,user_passward) values
+(10,'Hasina banu',01165228946,'Kasemnagar',12310);
+
+
+create table Membership_type (
+type_id number(15)          NOT NULL,
+membership_Period number(5),
+Signup_Free varchar(10),
+user_id number(10)           NOT NULL,
+PRIMARY KEY(type_id),
+FOREIGN KEY (user_id) references  Admin_users (user_id) );      
+
+
+insert into Membership_type (type_id,membership_Period,Signup_Free,user_id) values
+(1901,4,'no',1);
+insert into Membership_type (type_id,membership_Period,Signup_Free,user_id) values
+(1902,3,'no',2);
+insert into Membership_type (type_id,membership_Period,Signup_Free,user_id) values
+(1903,4,'yes',3);
+insert into Membership_type (type_id,membership_Period,Signup_Free,user_id) values
+(1904,4,'no',4);
+insert into Membership_type (type_id,membership_Period,Signup_Free,user_id) values
+(1905,3,'no',5);
+insert into Membership_type (type_id,membership_Period,Signup_Free,user_id) values
+(1906,3,'yes',6);
+insert into Membership_type (type_id,membership_Period,Signup_Free,user_id) values
+(1907,2,'no',7);
+insert into Membership_type (type_id,membership_Period,Signup_Free,user_id) values
+(1908,3,'no',8);
+insert into Membership_type (type_id,membership_Period,Signup_Free,user_id) values
+(1909,4,'yes',9);
+insert into Membership_type (type_id,membership_Period,Signup_Free,user_id) values
+(1910,1,'no',10);
+
+create table Members (
+Member_id number(15)            NOT NULL,
+name varchar(20),
+Joining_date varchar(10),
+Age number(2),
+Gender varchar(7),
+Membership_id number(15)    NOT NULL,
+user_id number(10)          NOT NULL,
+PRIMARY KEY (Member_id),
+FOREIGN KEY (Membership_id) references Membership_type(type_id),
+FOREIGN KEY (user_id) references Admin_users (user_id) );
+
+insert into Members (Member_id,name,Joining_date,Age,Gender,Membership_id,user_id) values
+(1001,'Rahim','14/1/2016',20,'male',1901,1);
+insert into Members (Member_id,name,Joining_date,Age,Gender,Membership_id,user_id) values
+(1002,'Bony','15/11/2016',24,'male',1902,2);
+insert into Members (Member_id,name,Joining_date,Age,Gender,Membership_id,user_id) values
+(1003,'Ritu','2/3/2017',19,'female',1903,3);
+insert into Members (Member_id,name,Joining_date,Age,Gender,Membership_id,user_id) values
+(1004,'Tahsin','4/6/2017',21,'male',1904,4);
+insert into Members (Member_id,name,Joining_date,Age,Gender,Membership_id,user_id) values
+(1005,'Kapil','1/5/2017',28,'male',1905,5);
+insert into Members (Member_id,name,Joining_date,Age,Gender,Membership_id,user_id) values
+(1006,'Mou','2/6/2017',20,'female',1906,6);
+insert into Members (Member_id,name,Joining_date,Age,Gender,Membership_id,user_id) values
+(1007,'Limon','4/7/2017',21,'male',1907,7);
+insert into Members (Member_id,name,Joining_date,Age,Gender,Membership_id,user_id) values
+(1008,'Dhiman','7/6/2017',23,'male',1908,8);
+insert into Members (Member_id,name,Joining_date,Age,Gender,Membership_id,user_id) values
+(1009,'Hamim','10/5/2017',21,'male',1909,9);
+
+ 
+ 
+create table Instructor(
+INS_id number(15)             NOT NULL,
+Name varchar(50),
+Contact number(11),
+Email varchar(30),
+Address varchar(20),
+user_id number(10)             NOT NULL,
+PRIMARY KEY (INS_id), 
+FOREIGN KEY (user_id) references  Admin_users (user_id) );
+
+insert into Instructor (INS_id,Name,Contact,Email,Address,user_id) values
+(1941,'Simran',01345612311,'simran41@gmail.com','PTI',1);
+insert into Instructor (INS_id,Name,Contact,Email,Address,user_id) values
+(1942,'Ratan',01645612314,'ratan42@gmail.com','Gollamari',2);
+insert into Instructor (INS_id,Name,Contact,Email,Address,user_id) values
+(1943,'Durjoy',01745611314,'durjoy43@gmail.com','Tootpara',3);
+insert into Instructor (INS_id,Name,Contact,Email,Address,user_id) values
+(1944,'Riti',01645512313,'riti44@gmail.com','Nirala',4);
+insert into Instructor (INS_id,Name,Contact,Email,Address,user_id) values
+(1945,'Sourav',01835612318,'sourav45@gmail.com','Rupsha',5);
+insert into Instructor (INS_id,Name,Contact,Email,Address,user_id) values
+(1946,'Bini',01835634318,'bini46@gmail.com','PTI',6);
+insert into Instructor (INS_id,Name,Contact,Email,Address,user_id) values
+(1947,'Kinjal',01335612276,'kinjal@gmail.com','Banargati',7);
+
+
+create table WorkOutname (
+workout_id number(10)       NOT NULL,
+name varchar(50),
+Description Varchar(100),
+PRIMARY KEY (workout_id) );
+
+insert into WorkOutname (workout_id,name,Description) values
+(4101,'Deadlift','predominantly engaging ones back and legs');
+insert into WorkOutname (workout_id,name,Description) values
+(4102,'30-Degree Lat Pulldown','trengthens ones middle and upper back');
+insert into WorkOutname (workout_id,name,Description) values
+(4103,'Pullups','don’t lose ones form in favor of reps');
+insert into WorkOutname (workout_id,name,Description) values
+(4104,'Seated Incline Dumbbell Curl','hard ones arms are working');
+insert into WorkOutname (workout_id,name,Description) values
+(4105,'Shrugs','using a designated shrug machine'); 
+insert into WorkOutname (workout_id,name,Description) values
+(4106,'Cable Crossover','a versatile exercise thats easy to learn and vital to any chest routine');
+insert into WorkOutname (workout_id,name,Description) values
+(4107,'Incline Flye','grabing some moderately heavy dumbbells and getting lifting');
+
+
+create table WorkOut_Plan (
+plan_id number(15)           NOT NULL,
+Workout_time varchar(10),
+workout_id  number(10)       NOT NULL,
+Ins_id number(15)            NOT NULL,
+Member_id number(15)         NOT NULL,
+PRIMARY KEY(Plan_id),
+FOREIGN KEY (Member_id) references Members(Member_id),
+FOREIGN KEY (Ins_id) references Instructor(INS_id),
+FOREIGN KEY (Workout_id) references WorkOutname(workout_id) );
+
+insert into WorkOut_Plan (plan_id,Workout_time,workout_id,Ins_id,Member_id) values
+(91,'4pm',4101,1941,1001);
+insert into WorkOut_Plan (plan_id,Workout_time,workout_id,Ins_id,Member_id) values
+(92,'5pm',4102,1942,1002);
+insert into WorkOut_Plan (plan_id,Workout_time,workout_id,Ins_id,Member_id) values
+(93,'4pm',4103,1943,1003);
+insert into WorkOut_Plan (plan_id,Workout_time,workout_id,Ins_id,Member_id) values
+(94,'7pm',4104,1944,1004);
+insert into WorkOut_Plan (plan_id,Workout_time,workout_id,Ins_id,Member_id) values
+(95,'6pm',4105,1945,1005);
+insert into WorkOut_Plan (plan_id,Workout_time,workout_id,Ins_id,Member_id) values
+(96,'6pm',4106,1946,1006);
+insert into WorkOut_Plan (plan_id,Workout_time,workout_id,Ins_id,Member_id) values
+(97,'5pm',4107,1947,1007);
+
+ 
+
+
+create table Payment(
+P_id number(15)             NOT  NULL,
+Time varchar(10),
+Payment_date varchar(10),
+Amount number(5),
+Member_id number(15)        NOT NULL,
+user_id number(10)          NOT NULL,
+PRIMARY KEY (P_id),
+FOREIGN KEY (Member_id) references  Members(member_id),
+FOREIGN KEY (user_id) references Admin_users (user_id) );
+
+insert into Payment (P_id,Time,Payment_date,Amount,Member_id,user_id) values
+(7001,'5pm','12/1/2017',5000,1001,1);
+insert into Payment (P_id,Time,Payment_date,Amount,Member_id,user_id) values
+(7002,'4pm','15/3/2017',4500,1002,2);
+insert into Payment (P_id,Time,Payment_date,Amount,Member_id,user_id) values
+(7003,'5pm','5/3/2017',5000,1003,3);
+insert into Payment (P_id,Time,Payment_date,Amount,Member_id,user_id) values
+(7004,'4pm','16/7/2017',5000,1004,4);
+insert into Payment (P_id,Time,Payment_date,Amount,Member_id,user_id) values
+(7005,'5pm','18/8/2017',4500,1005,5);
+insert into Payment (P_id,Time,Payment_date,Amount,Member_id,user_id) values
+(7006,'4pm','13/7/2017',5000,1006,6);
+insert into Payment (P_id,Time,Payment_date,Amount,Member_id,user_id) values
+(7007,'5pm','14/7/2017',5000,1007,7);
+    
+create table Promotional_Material (
+Promotional_id number(10)      NOT NULL,
+File_Upload varchar (10),
+user_id number(10)             NOT NULL,
+PRIMARY KEY (Promotional_id),
+FOREIGN KEY (user_id) references  Admin_users (user_id) );
+
+insert into Promotional_Material (Promotional_id,File_Upload,user_id) values
+(1501,'yes',1);
+insert into Promotional_Material (Promotional_id,File_Upload,user_id) values
+(1502,'yes',2);
+insert into Promotional_Material (Promotional_id,File_Upload,user_id) values
+(1503,'yes',3);
+insert into Promotional_Material (Promotional_id,File_Upload,user_id) values
+(1504,'no',4);
+insert into Promotional_Material (Promotional_id,File_Upload,user_id) values
+(1505,'yes',5);
+insert into Promotional_Material (Promotional_id,File_Upload,user_id) values
+(1506,'yes',6);
+insert into Promotional_Material (Promotional_id,File_Upload,user_id) values
+(1507,'yes',7);
+commit;
+
+Describe Admin_users;
+Describe Members;
+Describe Membership_type;
+Describe Instructor;
+Describe WorkOut_Plan;
+Describe WorkOutname;
+Describe Payment;
+Describe Promotional_Material;
+
+
+
+select * from Admin_users;
+select * from Members;
+select * from Membership_type;
+select * from Instructor;
+select * from WorkOut_Plan;
+select * from WorkOutname;
+select * from Payment;
+select * from Promotional_Material;
+
+
+alter table Promotional_Material add temporary_column VARCHAR2(50);
+description Promotional_Material;
+select * from Promotional_Material;
+
+alter table Promotional_Material drop column temporary_column;
+description Promotional_Material;
+select * from Promotional_Material;
+
+
+alter table Promotional_Material modify File_Upload VARCHAR2(15);
+desc Promotional_Material ;
+select * from Promotional_Material;
+
+
+alter table Promotional_Material rename column File_Upload to F_upload;
+desc Promotional_Material ;
+select * from Promotional_Material;
+
+
+alter table Promotional_Material rename column F_upload to File_Upload;
+desc Promotional_Material ;
+select * from Promotional_Material;
+
+
+
+
+update Members set Age = 21 where Member_id=1003 ;
+desc Members;
+select * from Members;
+
+
+
+delete from Membership_type  where type_id=1910;
+desc Membership_type;
+select * from Membership_type;
+
+
+
+insert into Promotional_Material (Promotional_id,File_Upload,user_id) values
+(1508,'yes',8);
+
+
+select name from Members where Member_id = 1001;
+
+
+select name , Joining_date from Members
+where Member_id BETWEEN 1001 and 1005;
+
+
+select name , Joining_date from Members
+where Member_id not BETWEEN 1001 and 1005;
+
+
+select name , Joining_date from Members
+where Member_id BETWEEN 1001 and 1005;
+
+
+select name , Joining_date from Members
+where Member_id>=1001 and  Member_id<=1006 ;
+
+
+select name , Joining_date from Members
+where Member_id>=1001 or  Member_id<=1006 ;
+ 
+
+select name , Joining_date from Members where Member_id IN(1001,1005);
+
+
+select name , Joining_date from Members where Member_id NOT IN(1001,1005);
+
+select name , Joining_date from Members ORDER BY Member_id;
+
+
+
+select name , Joining_date from Members ORDER BY Member_id desc;
+
+
+
+select Name,Contact from Instructor
+order by INS_id,user_id;
+
+select Name,Contact from Instructor
+order by INS_id,user_id desc;
+
+
+select distinct (user_id) from Instructor;
+
+
+
+select max(user_id) from Members;
+select min(user_id) from Members;
+select max (user_id) from Payment;
+select count (user_id) from Payment;
+select count(*) from Payment;
+select count(distinct (user_id)) from Payment;
+select  avg(user_id) from Payment;
+select  avg(nvl(user_id,0)) from Payment;
+
+
+
+select count(Membership_id),user_id from Members group by user_id;
+select count(Membership_id),user_id from Members where  Member_id >1004 group by user_id;
+
+
+
+select count(Amount),user_id from Payment  group by user_id having user_id >1005;
+select count(Amount),user_id from Payment  group by user_id having count(user_id)>1004;
+
+
+
+select name,contact,email from Instructor where name in ('Simran','Ratan','Durjoy');
+
+
+
+SELECT user_id
+FROM Admin_users
+GROUP BY user_id
+HAVING COUNT(user_contact) <5;
+
+ 
+ 
+
+--set operations
+
+--union operation(to check first 4 members has first 6 payment has or not
+select Member_id,user_id from Members where Member_id<1005
+union
+select Member_id,user_id from Payment where P_id<7006;
+
+
+
+--INTERSECT operation (self payment)
+select Member_id,user_id from Members 
+INTERSECT
+select Member_id,user_id from Payment ;
+
+
+
+
+--MINUS operation (to check who dont give payment)
+select Member_id,user_id from Members 
+MINUS
+select Member_id,user_id from Payment ;
+
+
+--union all operation
+ select User_name,user_Contact from Admin_users where user_id>0 and user_id<5
+union all  --selected column is same in no. and same order of data types
+select Name , Contact from Instructor where user_id>0 and user_id<5;
+
+
+--natural join 
+select Members.name,Members.gender,payment.Payment_date
+FROM Members JOIN Payment
+Using (Member_id);
+
+
+--Inner Join 
+
+select Members.Member_id,Payment.Payment_date
+FROM Members JOIN Payment
+ON Members.Member_id = Payment.Member_id;
+
+--Cross Joins / Cartesian Joins
+
+Select m.name,p.amount
+From Members m Cross JOIN Payment p;
+
+
+--Outer join
+
+
+--Left Outer Join
+   
+Select m.name,p.Time,p.Payment_date
+FROM Members m LEFT OUTER JOIN Payment p
+ON m.Member_id = p.Member_id;
+
+--Right Outer Join
+
+Select m.name,p.Time,p.Payment_date
+FROM Members m RIGHT OUTER JOIN Payment p
+ON m.Member_id = p.Member_id;
+
+
+--FULL OUTER JOIN
+ 
+Select m.name,p.Time,p.Payment_date
+FROM Members m FULL OUTER JOIN Payment p
+ON m.Member_id = p.Member_id;
+
+
+--Self Join
+--(max Payment)
+
+select p.Amount from Payment p MINUS
+select p.Amount from Payment p join Payment q on p.Amount<q.Amount;
+
+
+
+
+--Findout max Payment using PL MYSql
+
+SET SERVEROUTPUT ON
+DECLARE
+   max_payment  Payment.amount%type;
+BEGIN
+   SELECT MAX(amount)  INTO max_payment  
+   FROM Payment;
+   DBMS_OUTPUT.PUT_LINE('The maximum payment is : ' || max_payment);
+ END;
+/
+
+
+
+--for particular person  payment date
+SET  SERVEROUTPUT ON
+DECLARE
+  Date_entered Payment.Payment_date%type;
+  Name_Title  Members.name%type := 'Mou';
+BEGIN
+  SELECT Payment_date INTO Date_entered
+  FROM Payment, Members
+  WHERE Members.Member_id = Payment.Member_id AND
+  name = Name_Title;  
+  DBMS_OUTPUT.PUT_LINE('Name : ' || Name_Title || ' pays payment '|| Date_entered);
+END;
+/
+
+
+--10% discount whose pays in 5/3/2017 because of annaual function of Gym
+
+SET SERVEROUTPUT ON
+DECLARE
+    full_payment      Payment.amount%type;
+    Date_Entered varchar2(50);
+    discount_payment Payment.amount%type;
+	
+BEGIN
+    
+    Date_Entered :='5/3/2017';
+    SELECT Amount  INTO full_payment
+    FROM Payment
+    WHERE Payment_date like Date_Entered ;
+ 
+     
+    IF full_payment = 5000    THEN
+               discount_payment :=  full_payment - (full_payment*0.1);
+    
+      END IF;
+ 
+DBMS_OUTPUT.PUT_LINE (Date_Entered || 'Full Payment: '||full_payment||' Disounted Payment: '|| ROUND(discount_payment,2));
+ 
+END;
+/
+
+
+--PL/SQL Function
+
+CREATE OR REPLACE FUNCTION avg_payment RETURN NUMBER IS
+avg_pay Payment.Amount%type;
+BEGIN
+SELECT AVG(Amount) INTO avg_pay
+FROM Payment;
+RETURN avg_pay;
+END;
+/
+
+SET SERVEROUTPUT ON
+BEGIN
+dbms_output.put_line('Average Payment: ' || avg_payment);
+END;
+/
+
+
+--Triggering
+CREATE TRIGGER TR_ADE
+BEFORE UPDATE OR INSERT ON Payment
+FOR EACH ROW
+BEGIN
+IF :NEW.Amount>5000 THEN
+:NEW.Time:='5.00';
+ELSIF :NEW.Amount >4500 AND :NEW.Amount<5000 THEN
+:NEW.Time:='3.00';
+ELSIF :NEW.Amount>3500 AND :NEW.Amount<4500 THEN
+:NEW.Time:='8.00';
+END IF;
+END TR_ADE;
+/
+
+
+ 
+
+-- PL Cursor
+
+SET SERVEROUTPUT ON
+DECLARE
+CURSOR Pay IS SELECT p_id, Amount FROM Payment;
+pay_record pay%ROWTYPE;
+BEGIN
+OPEN pay;
+LOOP
+FETCH pay INTO pay_record;
+EXIT WHEN pay%ROWCOUNT > 6;
+DBMS_OUTPUT.PUT_LINE ('p_id : ' || pay_record.p_id || ' ' ||
+pay_record.Amount);
+END LOOP;
+CLOSE pay;
+END;
+/
